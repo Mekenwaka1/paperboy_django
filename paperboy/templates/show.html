@@ -1,0 +1,31 @@
+{% block content %}
+
+<p>Paperboy: {{ paperboy.name }}</p>
+
+<p>
+  Hi, my name is {{ paperboy.name }}. I have delivered
+  {{ paperboy.experience }} papers so far and earned ${{ paperboy.earnings }}.
+</p>
+
+<form
+  class="deliver-form"
+  action="{% url 'deliver' id=paperboy.id %}"
+  method="post"
+>
+  {% csrf_token %}
+  <div class="field">
+    <label for="ad1">Starting house number</label>
+    <input type="number" name="address1" id="ad1" />
+  </div>
+
+  <div class="field">
+    <label for="ad2">Final house number</label>
+    <input type="number" name="address2" id="ad2" />
+  </div>
+
+  <div class="field">
+    <input type="submit" value="Deliver!" class="deliver-button" />
+  </div>
+</form>
+
+{% endblock %}
